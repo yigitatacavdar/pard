@@ -1,9 +1,8 @@
-
-Password Retention Directory - A local password manager application
-
 |\  /\  |\ |\
 |/ |__| |/ | |
 |  |  | |\ |/
+
+Password Retention Directory - A local password manager application
 
 
 currently under development
