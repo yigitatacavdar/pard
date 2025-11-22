@@ -7,15 +7,34 @@ Password Retention Directory - A local password manager application
 
 Dev Guide:
 
-npm should be called inside the frontend directory to debug
+to run the application
+first install dependencies
 
-> cd frontend
-> npm run dev
-
-if it doesnt work the first time
-
+> cd backend
+> npm install
 > cd frontend
 > npm install
 
-this should fix it
+now you can run the application
+
+terminal 1:
+> cd backend
+> npx nodemon server.js
+
+terminal 2:
+> cd frontend
+> npm run dev
+
+terminal 3:
+> cd frontend
+> npm run electron-dev
+
+
+to do:
+
+encryption of the vault password should be handled by a master password, the crypto file and vault file needs to be changed to do this.
+the master password can be the login password
+this way safer encryption is achieved
+
+.env should be populated and integrated
 

@@ -7,15 +7,36 @@ function Login({onLogin}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (username.trim() && password.trim()) {
-        onLogin(username);
-    } else {
-        alert("Please enter username and password");
+  if (!username.trim() || !password.trim()) {
+    alert("Please enter username and password");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3001/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.msg || "Login failed");
+      return;
     }
-    };
+
+    // Login successful
+    console.log("JWT token:", data.token); // you can save it in memory or localStorage
+    onLogin(data.username); // tell App.jsx user is logged in
+  } catch (err) {
+    console.error(err);
+    alert("Server error");
+  }
+};
 
     return (
         <form className="login-form" onSubmit={handleSubmit}
