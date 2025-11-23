@@ -9,15 +9,20 @@ function App() {
   const [user, setUser] = useState("");
 
   return (
-    <div className="app-container">
-      {!loggedIn ? (
-        <Login onLogin={(username) => { setUser(username); setLoggedIn(true); }} />
-      ) : (
-        <Vault username={user} />
-      )}
-    </div>
-  );
+  <div className="app-container">
+    {(() => {
+      if (!loggedIn) {
+        return <Login onLogin={(username) => { setUser(username); setLoggedIn(true); }} />;
+        // goes to login.jsx and lookin function onLogin sets as username toggle setLoggedin torenderV
+      } else {
+        return <Vault username={user} />;
+      }
+    })()}
+  </div>
+);
+
 
 }
+
 
 export default App;
